@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{ title }}</title>
 </head>
 <body>
     <div class="navbar">
@@ -11,6 +11,20 @@
             <h2>Ratings</h2>
         </a>
     </div>
-    
+    <div class="main">
+        <div class="image">
+            <img src="{{ poster }}" alt="movie_poster">
+        </div>
+        <div class="details">
+            <p class="title">{{ title }}</p>
+            <div class="rating">
+                <meter id="imdb_rating" value="{{ rating }}" min="0" max="10"></meter>
+                <span>{{ rating}}</span>
+            </div>
+            <h4>Plot</h4>
+            <p class="plot">{{ plot }}</p>
+        </div>
+    </div>
+    <div class="episodes"></div>
 </body>
 </html>
