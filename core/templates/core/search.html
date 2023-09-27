@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ query }}</title>
+    <title>{{ title }}</title>
 </head>
 <body>
+    <div class="navbar">
+        <a href="/">
+            <h2>Ratings</h2>
+        </a>
+    </div>
     {% for result  in results %}
-        <a href="{% url 'core:details' result.imdbId %}">
+        <a href="{% url 'core:details' imdbId=result.imdbID type=result.Type %}">
             <div class="result">
                 <div class="image">
                     <img src="{{ result.Poster }}" alt="movie_poster">
@@ -20,6 +25,7 @@
             </div>
         </a>
     {% empty %}
+        <p>No results for <strong>{{ query }}</strong></p>
     {% endfor %}
 </body>
 </html>
