@@ -18,13 +18,23 @@ def search(request):
 def details(request, imdbId, type):
     if type == "movie":
         # omdb request
-        data = requests.get(f"https://www.omdbapi.com/?apiKey={omdbKey}&i={imdbId}").json()
+        data = requests.get(f"https://www.omdbapi.com/?apiKey={omdbKey}&i={imdbId}")
+        details = data.json()
+        context = {
+            "title": details['Title'],
+            "rating": details['Ratings'][0]['Value'].split('/')[0],
+            "plot": details['Plot'],
+            "released": details['Released'],
+            "languages": details['Language'],
+            "poster": details['Poster']
+        }
+        return render(request, "core/movie_details.html", context )
     elif type == "series":
         # web scraping
         data = runScraper(imdbId)
     # i think this is where we do the web scraping
     # url -> https://www.imdb.com/title/{imdbId}/
-    return render(request, "core/details.html", {})
+        return render(request, "core/serie_details.html", {})
 
 
 '''
