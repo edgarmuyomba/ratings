@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ query }}</title>
+</head>
+<body>
+    {% for result  in results %}
+        <a href="{% url 'core:details' result.imdbId %}">
+            <div class="result">
+                <div class="image">
+                    <img src="{{ result.Poster }}" alt="movie_poster">
+                </div>
+                <div class="details">
+                    <h3 class="title">{{ result.Title }}</h3>
+                    <p class="year">{{ result.Year }}</p>
+                    <p class="type">{{ result.Type }}</p>
+                </div>
+            </div>
+        </a>
+    {% empty %}
+    {% endfor %}
+</body>
+</html>
