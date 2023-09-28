@@ -3,8 +3,10 @@ from dotenv import load_dotenv
 import os
 import requests
 import time
+import json
 from bs4 import BeautifulSoup
 from requests import Session
+from django.http import JsonResponse
 
 load_dotenv()
 omdbKey = os.getenv('OMDB_APIKEY')
@@ -16,9 +18,6 @@ def search(request):
     data = requests.get(
         f"https://www.omdbapi.com/?apiKey={omdbKey}&s={query}").json()
     results = data['Search']
-    '''
-        format is title, year, imdbid, type, poster
-    '''
     return render(request, "core/search.html", {"results": results, "title": title})
 
 
@@ -46,13 +45,6 @@ def details(request, imdbId, type):
         return render(request, "core/serie_details.html", context)
 
 
-'''
-    for a movie, display all ratings from omdb, poster, box office
-    for a serie, scrape imdb and display well formatted ratings per episode on top of above results
-    https://www.imdb.com/title/{{ imdbId }}/episodes/ ,,, https://www.imdb.com/title/{{ imdbId }}/episodes/?season=2
-'''
-
-
 def runScraper(imdbID):
     session = Session()
     headers = {
@@ -66,8 +58,20 @@ def runScraper(imdbID):
     title = bs.find("span", {"class": "sc-afe43def-1"}).text
     plot = bs.find("span", {"class": "sc-466bb6c-0 kJJttH"}).text
     rating = bs.find("span", {"class": "sc-bde20123-1 iZlgcd"}).text
+    return {
+        "title": title,
+        "plot": plot,
+        "rating": rating,
+    }
 
-    time.sleep(1)
+def episode_ratings(requests, imdbID):
+    session = Session()
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'
+        'AppleWebKit 537.36 (KHTML, like Gecko) Chrome',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;'
+        'q=0.9,image/webp,*/*;q=0.8'
+    }
     episode_ratings = {}
     res2 = session.get(f"https://www.imdb.com/title/{imdbID}/episodes/", headers=headers)
     bs2 = BeautifulSoup(res2.text, "html.parser")
@@ -87,9 +91,4 @@ def runScraper(imdbID):
             for episode in episodes:
                 rate = episode.find("span", {"class": "ipc-rating-star ipc-rating-star--base ipc-rating-star--imdb ratingGroup--imdb-rating"})
                 episode_ratings[f'{season}'].append(rate.text.split('/')[0])
-    return {
-        "title": title,
-        "plot": plot,
-        "rating": rating,
-        "episode_ratings": episode_ratings,
-    }
+    return JsonResponse(json.dumps(episode_ratings))
