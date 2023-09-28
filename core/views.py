@@ -66,25 +66,30 @@ def runScraper(imdbID):
     title = bs.find("span", {"class": "sc-afe43def-1"}).text
     plot = bs.find("span", {"class": "sc-466bb6c-0 kJJttH"}).text
     rating = bs.find("span", {"class": "sc-bde20123-1 iZlgcd"}).text
+
     time.sleep(1)
+    episode_ratings = {}
     res2 = session.get(f"https://www.imdb.com/title/{imdbID}/episodes/", headers=headers)
     bs2 = BeautifulSoup(res2.text, "html.parser")
-    seasons = bs2.find_all("li", {"class": "ipc-tab ipc-tab--on-base"})
+    seasons = bs2.find_all("li", {"data-testid": "tab-season-entry"})
     for season in seasons:
         try:
             season = int(season.text)
-        except:
+        except ValueError:
             # value isnt an integer
-            print(season)
             pass 
         else:
+            episode_ratings[f'{season}'] = []
             time.sleep(1)
             episode_page = session.get(f"https://www.imdb.com/title/{imdbID}/episodes/?season={season}", headers=headers)
             bs3 = BeautifulSoup(episode_page.text, "html.parser")
             episodes = bs3.find_all("article", {"class": "sc-f1a948e3-1 bGxjcH episode-item-wrapper"})
-            print(len(episodes))
+            for episode in episodes:
+                rate = episode.find("span", {"class": "ipc-rating-star ipc-rating-star--base ipc-rating-star--imdb ratingGroup--imdb-rating"})
+                episode_ratings[f'{season}'].append(rate.text.split('/')[0])
     return {
         "title": title,
         "plot": plot,
-        "rating": rating
+        "rating": rating,
+        "episode_ratings": episode_ratings,
     }
