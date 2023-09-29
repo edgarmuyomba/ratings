@@ -62,9 +62,10 @@ def runScraper(imdbID):
         "title": title,
         "plot": plot,
         "rating": rating,
+        "imdbId": imdbID
     }
 
-def episode_ratings(requests, imdbID):
+def episode_ratings(request, imdbID):
     session = Session()
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5)'
@@ -90,5 +91,5 @@ def episode_ratings(requests, imdbID):
             episodes = bs3.find_all("article", {"class": "sc-f1a948e3-1 bGxjcH episode-item-wrapper"})
             for episode in episodes:
                 rate = episode.find("span", {"class": "ipc-rating-star ipc-rating-star--base ipc-rating-star--imdb ratingGroup--imdb-rating"})
-                episode_ratings[f'{season}'].append(rate.text.split('/')[0])
-    return JsonResponse(json.dumps(episode_ratings))
+                episode_ratings[f'{season}'].append(float(rate.text.split('/')[0]))
+    return JsonResponse(episode_ratings)
