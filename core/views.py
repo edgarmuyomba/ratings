@@ -32,8 +32,9 @@ def details(request, imdbId, type):
             "rating": details['Ratings'][0]['Value'].split('/')[0],
             "plot": details['Plot'],
             "released": details['Released'],
-            "languages": details['Language'],
-            "poster": details['Poster']
+            "poster": details['Poster'],
+            "actors": details['Actors'],
+            "year": details['Year']
         }
         return render(request, "core/movie_details.html", context)
     elif type == "series":
@@ -44,7 +45,6 @@ def details(request, imdbId, type):
         context['poster'] = data['Poster']
         context['year'] = data['Year']
         context['released'] = data['Released']
-        context['genre'] = data['Genre']
         context['actors'] = data['Actors']
         return render(request, "core/serie_details.html", context)
 

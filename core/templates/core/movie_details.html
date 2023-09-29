@@ -1,32 +1,39 @@
+{% load tailwindcss %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
+    {% tailwindcss %}
+    <link rel="stylesheet" href="{% static 'core/css/movie_details.css' %}">
 </head>
 <body>
     <div class="navbar">
-        <a href="/">
-            <h2>Ratings</h2>
-        </a>
+        <h2>
+            <a href="/">
+                Ratings
+            </a>
+        </h2>
+        <p class="author">by <a href="#">Edgar Muyomba</a></p>
     </div>
     <div class="main">
         <div class="image">
             <img src="{{ poster }}" alt="movie_poster">
         </div>
         <div class="details">
-            <p class="title">{{ title }}</p>
+            <p class="title"><a href="#">{{ title }}</a> <span>{{ year }}</span></p>
+            <p class="released">{{ released }}</p>
+            <p class="imdbId" hidden>{{ imdbId }}</p>
             <div class="rating">
-                <meter id="imdb_rating" value="{{ rating }}" min="0" max="10"></meter>
-                <span>{{ rating}}</span>
+                <p style="display: flex; align-items: center;">{{ rating }}<img src="{% static 'core/icons/star.svg' %}"
+                    width='16px' height="auto" alt=""></p>
             </div>
             <h4>Plot</h4>
-            <p class="plot">{{ plot }}</p>
-            <div class="languages">
-                <p>Language(s)</p>
-                <p>{{ languages }}</p>
-            </div>
+            <p class="plot">{{ plot }}</p><p style="font-size: 17px; font-weight: bold;">Actors</p>
+            <p class="actors">{{ actors }}</p>
             <div class="released">
                 <p>Released</p>
                 <p>{{ released }}</p>
