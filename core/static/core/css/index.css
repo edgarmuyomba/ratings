@@ -2,3 +2,21 @@
     box-sizing: border-box;
 }
 
+form > span {
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px 0 0 25px;
+    padding: 6px;
+    border: 1px solid black;
+}
+
+form > input {
+    border: 1px solid black;
+    border-radius: 0 25px 25px 0;
+}
+
+form > input:focus {
+    outline: none;
+}

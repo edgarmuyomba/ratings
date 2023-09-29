@@ -1,31 +1,36 @@
+{% load tailwindcss %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
+    {% tailwindcss %}
 </head>
-<body>
-    <div class="navbar">
+<body class="w-screen h-screen">
+    <div class="navbar p-10 h-auto">
         <a href="/">
-            <h2>Ratings</h2>
+            <h2 class="text-xl font-bold hover:scale-105 transition ease-in-out">Ratings</h2>
         </a>
     </div>
-    {% for result  in results %}
-        <a href="{% url 'core:details' imdbId=result.imdbID type=result.Type %}">
-            <div class="result">
-                <div class="image">
-                    <img src="{{ result.Poster }}" alt="movie_poster">
+    <div class="main flex justify-center flex-wrap gap-10 m-4">
+        {% for result  in results %}
+            <a href="{% url 'core:details' imdbId=result.imdbID type=result.Type %}">
+                <div class="result flex flex-col items-center gap-2 p-4 bg-gray-400 hover:scale-110 transition ease-in-out">
+                    <div class="image">
+                        <img src="{{ result.Poster }}" alt="movie_poster" class="h-60 w-auto">
+                    </div>
+                    <div class="details flex flex-col items-center gap-2 text-white">
+                        <h3 class="title">{{ result.Title }}</h3>
+                        <p class="year">{{ result.Year }}</p>
+                        <p class="type">{{ result.Type }}</p>
+                    </div>
                 </div>
-                <div class="details">
-                    <h3 class="title">{{ result.Title }}</h3>
-                    <p class="year">{{ result.Year }}</p>
-                    <p class="type">{{ result.Type }}</p>
-                </div>
-            </div>
-        </a>
-    {% empty %}
-        <p>No results for <strong>{{ query }}</strong></p>
-    {% endfor %}
+            </a>
+        {% empty %}
+            <p>No results for <strong>{{ query }}</strong></p>
+        {% endfor %}
+    </div>
 </body>
 </html>
