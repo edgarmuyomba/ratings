@@ -7,33 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <script src="{% static 'core/js/details.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'core/css/serie_details.css' %}">
 </head>
 
 <body>
     <div class="navbar">
-        <a href="/">
-            <h2>Ratings</h2>
-        </a>
+        <h2>
+            <a href="/">
+                Ratings
+            </a>
+        </h2>
+        <p>Low-budget imdb</p>
+        <p>by Edgar Muyomba</p>
     </div>
     <div class="main">
         <div class="image">
             <img src="{{ poster }}" alt="movie_poster">
         </div>
         <div class="details">
-            <p class="title">{{ title }}</p>
+            <p class="title">{{ title }} <span>{{ year }}</span></p>
+            <p class="released">{{ released }}</p>
             <p class="imdbId" hidden>{{ imdbId }}</p>
-            <div class="rating">
-                <meter id="imdb_rating" value="{{ rating }}" min="0" max="10"></meter>
-                <span>{{ rating}}</span>
-            </div>
             <h4>Plot</h4>
             <p class="plot">{{ plot }}</p>
+            <p>Actors</p>
+            <p class="actors">{{ actors }}</p>
+            <div class="ratings">
+                <p>IMDB Rating <span>{{ rating }}</span></p>
+                <meter id="imdb_rating" value="{{ rating }}" min="0" max="10"></meter>
+            </div>
         </div>
-    </div>
-    <h3>Episodes</h3>
-    <div class="episodes">
-        <table>
-            <!-- <th>
+        <h3>Episodes</h3>
+        <div class="episodes">
+            <table>
+                <!-- <th>
             <td>1</td>
             <td>2</td>
             <td>3</td>
@@ -55,7 +62,8 @@
                     <td>4</td>
                 </tr>
             </tbody> -->
-        </table>
+            </table>
+        </div>
     </div>
 </body>
 

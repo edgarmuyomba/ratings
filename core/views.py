@@ -40,8 +40,12 @@ def details(request, imdbId, type):
         # web scraping
         data = runScraper(imdbId)
         context = data
-        poster = requests.get(f"https://www.omdbapi.com/?apikey={omdbKey}&i={imdbId}").json()['Poster']
-        context['poster'] = poster
+        data = requests.get(f"https://www.omdbapi.com/?apikey={omdbKey}&i={imdbId}").json()
+        context['poster'] = data['Poster']
+        context['year'] = data['Year']
+        context['released'] = data['Released']
+        context['genre'] = data['Genre']
+        context['actors'] = data['Actors']
         return render(request, "core/serie_details.html", context)
 
 
