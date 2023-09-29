@@ -7,9 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
-    <script src="{% static 'core/js/details.js' %}" defer></script>
+    <!-- <script src="{% static 'core/js/details.js' %}" defer></script> -->
     {% tailwindcss %}
     <link rel="stylesheet" href="{% static 'core/css/serie_details.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/tablestyles.css' %}">
 </head>
 
 <body>
@@ -30,7 +31,8 @@
             <p class="released">{{ released }}</p>
             <p class="imdbId" hidden>{{ imdbId }}</p>
             <div class="ratings">
-                <p style="display: flex; align-items: center;">{{ rating }}<img src="{% static 'core/icons/star.svg' %}" width='16px' height="auto" alt=""></p>
+                <p style="display: flex; align-items: center;">{{ rating }}<img src="{% static 'core/icons/star.svg' %}"
+                        width='16px' height="auto" alt=""></p>
             </div>
             <h4>Plot</h4>
             <p class="plot">{{ plot }}</p>
@@ -40,28 +42,62 @@
         <h3>Episodes</h3>
         <div class="episodes">
             <table>
-                <!-- <th>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            </th>
-            <tbody>
+                <tr>
+                    <th></th>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                </tr>
                 <tr>
                     <td>1</td>
-                    <td>9.0</td>
-                    <td>8.8</td>
-                    <td>7</td>
-                    <td>4.5</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td>8.6</td>
-                    <td>9.3</td>
-                    <td>8.3</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>4</td>
                     <td>4</td>
                 </tr>
-            </tbody> -->
+                <tr>
+                    <td>5</td>
+                    <td>5</td>
+                    <td>5</td>
+                    <td></td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td></td>
+                    <td>6</td>
+                    <td></td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>7</td>
+                </tr>
             </table>
         </div>
     </div>

@@ -1,0 +1,16 @@
+table {
+    border-collapse: separate;
+}
+
+tr > * {
+    padding: 16px;
+    margin: 2px;
+}
+
+tr > th {
+    background-color: lightgray;
+}
+
+tr > td:first-child {
+    background-color: lightgray;
+}

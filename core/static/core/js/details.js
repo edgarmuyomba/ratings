@@ -39,13 +39,13 @@ function displayRatings(ratings) {
 }
 
 (async () => {
-    const ratings = await get_ratings(id);
+    // const ratings = await get_ratings(id);
     const rates = {
         1: [1, 2, 3, 4, 5],
         2: [1, 2, 3, 4, 5, 6],
         3: [1, 2, 3, 4],
         4: [1, 2, 3, 4, 5, 6, 7],
     }
-    displayRatings(ratings);
+    displayRatings(rates);
 })();
 
