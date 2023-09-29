@@ -3,14 +3,42 @@ table {
 }
 
 tr > * {
-    padding: 16px;
-    margin: 2px;
+    height: 30px;
+    width: 35px;
+    text-align: center;
+    border-radius: 2px;
 }
 
 tr > th {
     background-color: lightgray;
+    border: 1px solid #666;
 }
 
 tr > td:first-child {
     background-color: lightgray;
+}
+
+div.episodes {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
+    border: 1px solid #666;
+    padding: 16px;
+    border-radius: 5px;
+}
+
+h3.episodes {
+    font-weight: bold;
+    font-size: 17px;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+}
+
+div.useless {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    text-wrap: wrap;
 }

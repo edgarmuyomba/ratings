@@ -66,7 +66,6 @@ function colorTiles() {
     ];
 
     const ratings = document.querySelectorAll('td');
-    console.log(ratings);
 
     for (let rate of ratings) {
         if (!rate.classList.contains("index")) {
