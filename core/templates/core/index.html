@@ -1,22 +1,30 @@
+{% load tailwindcss %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ratings</title>
+    {% tailwindcss %}
+    <link rel="stylesheet" href="{% static 'core/css/index.css' %}">
 </head>
-<body>
-    <div class="navbar">
+<body class="w-screen h-screen">
+    <div class="navbar p-8 h-auto">
         <a href="/">
-            <h2>Ratings</h2>
+            <h2 class="text-xl font-bold hover:scale-105 transition ease-in-out">Ratings</h2>
         </a>
     </div>
-    <div class="main">
-        <form action="{% url 'core:search' %}" method="GET">
-            <input type="text" name="name" placeholder="Enter the name of a movie or a show" autocomplete="off">
+    <div class="main flex justify-center items-center h-5/6">
+        <form action="{% url 'core:search' %}" method="GET" class="flex items-center">
+            <span class="bg-slate-100">
+                <img src="{% static 'core/icons/magnify.svg' %}" class="h-6 w-6" alt="">
+            </span>
+            <input type="text" name="name" placeholder="Enter the name of a movie or a show" autocomplete="off" class="w-80 p-2">
         </form>
     </div>
-    <div class="footer">
+    <div class="footer h-fit flex justify-center items-center">
         <p>Inspiration from <a href="https://www.tiktok.com/@robertosorio08" target="_blank">robertosorio08</a></p>
     </div>
 </body>

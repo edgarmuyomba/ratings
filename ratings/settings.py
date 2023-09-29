@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # third party
     'requests',
     'bs4',
-    'rest_framework',
+    'tailwindcss',
     'dotenv',
     # default
     'django.contrib.admin',
@@ -134,3 +134,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+TAILWINDCSS_CLI_FILE = BASE_DIR / 'tailwindcss-windows-x64.exe'
+TAILWINDCSS_CONFIG_FILE = BASE_DIR / 'tailwind.config.js'
+
+# For file mode
+TAILWINDCSS_OUTPUT_FILE = 'style.css'
