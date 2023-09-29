@@ -17,12 +17,12 @@
     <div class="main flex justify-center flex-wrap gap-10 m-4">
         {% for result  in results %}
             <a href="{% url 'core:details' imdbId=result.imdbID type=result.Type %}">
-                <div class="result flex flex-col items-center gap-2 p-4 bg-gray-400 hover:scale-110 transition ease-in-out">
+                <div class="result flex flex-col items-center hover:scale-110 transition ease-in-out">
                     <div class="image">
-                        <img src="{{ result.Poster }}" alt="movie_poster" class="h-60 w-auto">
+                        <img src="{{ result.Poster }}" alt="movie_poster" class="h-auto w-full">
                     </div>
-                    <div class="details flex flex-col items-center gap-2 text-white">
-                        <h3 class="title">{{ result.Title }}</h3>
+                    <div class="details flex flex-col items-center text-center text-white bg-black w-full p-4">
+                        <h3 class="title w-64 break-normal">{{ result.Title }}</h3>
                         <p class="year">{{ result.Year }}</p>
                         <p class="type">{{ result.Type }}</p>
                     </div>
