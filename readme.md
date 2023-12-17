@@ -52,6 +52,7 @@ Movie Results
 2. [Django](https://www.djangoproject.com/)
 3. [Beautiful Soup 4](https://pypi.org/project/beautifulsoup4/)
 4. [Requests](https://pypi.org/project/requests/)
+5. html, css, javascript
 
 > [!CAUTION]
 > System might fail to run as expected due to changes in the imdb website structure or chnages with the working of the omdb api. Regular updates are rolled out to ensure its continued operation. Thank you
