@@ -59,9 +59,9 @@ def runScraper(imdbID):
     }
     res = session.get(f"https://www.imdb.com/title/{imdbID}/", headers=headers)
     bs = BeautifulSoup(res.text, "html.parser")
-    title = bs.find("span", {"class": "sc-afe43def-1"}).text
-    plot = bs.find("span", {"class": "sc-466bb6c-0 kJJttH"}).text
-    rating = bs.find("span", {"class": "sc-bde20123-1 iZlgcd"}).text
+    title = bs.find("span", {"class": "hero__primary-text"}).text
+    plot = bs.find("span", {"class": "sc-466bb6c-0 hlbAws"}).text
+    rating = bs.find("span", {"class": "sc-bde20123-1 cMEQkK"}).text
     return {
         "title": title,
         "plot": plot,
@@ -92,7 +92,7 @@ def episode_ratings(request, imdbID):
             time.sleep(1)
             episode_page = session.get(f"https://www.imdb.com/title/{imdbID}/episodes/?season={season}", headers=headers)
             bs3 = BeautifulSoup(episode_page.text, "html.parser")
-            episodes = bs3.find_all("article", {"class": "sc-f1a948e3-1 bGxjcH episode-item-wrapper"})
+            episodes = bs3.find_all("article", {"class": "sc-f1a948e3-1 hJmxOU episode-item-wrapper"})
             for episode in episodes:
                 rate = episode.find("span", {"class": "ipc-rating-star ipc-rating-star--base ipc-rating-star--imdb ratingGroup--imdb-rating"})
                 episode_ratings[f'{season}'].append(float(rate.text.split('/')[0]))
