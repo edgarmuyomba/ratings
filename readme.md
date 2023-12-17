@@ -16,9 +16,11 @@ Search results page
 ![Search Results](./screenshots/searchresults.png)
 
 Series Ratings
+
 ![Series Ratings](./screenshots/seriesresults.png)
 
 Movie Results
+
 ![Movie Results](./screenshots/movieresults.png)
 
 ## Setting up dev
